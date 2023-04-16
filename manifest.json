@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "ResumeUp",
+  "description": "Up your resume in hh.ru automatically",
+  "version": "1.0",
+  "action": {
+    "default_title": "Меню",
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [ "StorageOperations.js", "content_main.js" ],
+      "matches": [ "<all_urls>" ]
+    }
+  ],
+  "permissions": [ "storage" ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://hh.ru/*"
+      ],
+      "js": [
+        "contentScript.js",
+        "StorageOperations.js"
+      ]
+    }
+  ],
+  "host_permissions": [ "https://hh.ru/*" ]
+}
