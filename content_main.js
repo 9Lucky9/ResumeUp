@@ -4,7 +4,7 @@ const upResumeButtonQuery = '#HH-React-Root > div > div.HH-MainContent.HH-Supern
 const targetUrl = "https://hh.ru/resume/";
 
 //4 hours in milliSeconds
-const milliSeconds = 2000;
+const milliSeconds = 14400000;
 const mo = new MutationObserver(onMutation);
 //Create interval number by setInterval()
 var intervalId;
