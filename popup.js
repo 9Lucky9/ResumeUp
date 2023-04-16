@@ -6,9 +6,15 @@ const enableSwitch = document.getElementById("toggleButton");
 async function init() {
     const savedValue = await getEnableStatus();
     enableSwitch.checked = savedValue;
-    enableSwitch.addEventListener("change", function (event) {
-        setEnableStatus(event.target.checked)
-    });
+    enableSwitch.addEventListener("change", setEnableStatusListener);
+}
+function setEnableStatusListener(event) {
+    setEnableStatus(event.target.checked)
+    if (event.target.checked === false) {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { stopRuntime: true });
+        });
+    }
 }
 
 //Create new tab if tag was <a> clicked.
