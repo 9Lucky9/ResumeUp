@@ -5,8 +5,9 @@ const targetUrl = "https://hh.ru/resume/";
 
 //4 hours in milliSeconds
 const milliSeconds = 14400000;
+//Mutation observer
 const mo = new MutationObserver(onMutation);
-//Create interval number by setInterval()
+//Interval number by setInterval()
 var intervalId;
 
 //Script stopped within runtime
@@ -15,18 +16,21 @@ var stoppedInRuntime = false;
 export function main() {
     getEnableStatus().then((isEnabled) => {
         if (isEnabled === true) {
-            observe();
+            mo.observe(document, {
+                subtree: true,
+                childList: true,
+            });
         }
     });
 }
 
 //If document changes and adds upResumeButton then fire the script
-function onMutation() {
-    if (document.querySelector(upResumeButtonQuery)) {
+function onMutation(mutations) {
+    let buttonie = document.querySelector(upResumeButtonQuery);
+    if (buttonie != null) {
         mo.disconnect();
         upResume();
         intervalId = setInterval(upResume, milliSeconds);
-        observe();
     }
 }
 
@@ -40,21 +44,10 @@ chrome.runtime.onMessage.addListener(
     }
 );
 
-//Observe document only on page *resume/*
-function observe() {
-    if (document.URL.includes(targetUrl)) {
-        mo.observe(document, {
-            subtree: true,
-            childList: true,
-        });
-    }
-}
-
 //Up resume by clicking the up button
 function upResume() {
     if (!stoppedInRuntime) {
         document.querySelector(upResumeButtonQuery).click();
-        console.log("Fired");
     }
 }
 
