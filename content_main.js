@@ -1,6 +1,6 @@
 import { getEnableStatus } from "./StorageOperations.js";
 
-const upResumeButtonQuery = '#HH-React-Root > div > div.HH-MainContent.HH-Supernova-MainContent > div.main-content > div > div:nth-child(2) > div > div > div:nth-child(3) > div > div > div > div:nth-child(2) > div:nth-child(1) > div > div.bloko-gap.bloko-gap_top > div > button';
+const upResumeButtonQuery = '#HH-React-Root > div > div.HH-MainContent.HH-Supernova-MainContent > div.main-content > div > div:nth-child(2) > div > div > div.resume-wrapper > div:nth-child(2) > div > div.bloko-columns-row > div > div > div:nth-child(2) > div.bloko-gap.bloko-gap_top > div > button';
 const targetUrl = "https://hh.ru/resume/";
 
 //4 hours in milliSeconds
